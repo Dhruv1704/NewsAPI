@@ -18,7 +18,7 @@ app.post(`/getNews`, (req, res) => {
 
     const {country, category, page, pageSize} = req.body;
 
-    const apiUrl = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&${page}&${pageSize}&apiKey=${process.env.NEWS_API_KEY}`;
+    const apiUrl = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&page=${page}&pageSize=${pageSize}&apiKey=${process.env.NEWS_API_KEY}`;
 
     const options = {
         url: apiUrl,
