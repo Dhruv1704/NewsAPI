@@ -25,7 +25,7 @@ app.post(`/getNews`, async (req, res) => {
 
     const cacheValue = await client.get(cacheKey);
     if (cacheValue) {
-        res.send(cacheValue);
+        res.send(JSON.parse(cacheValue));
         return;
     }
 
@@ -40,7 +40,7 @@ app.post(`/getNews`, async (req, res) => {
 
     request(options, async(error, response, body) => {
         if (!error && response.statusCode === 200) {
-            await client.set(cacheKey, body, 'EX', 7200);
+            await client.set(cacheKey, JSON.stringify(body), 'EX', 7200);
             res.send(body);
         } else {
             res.status(response.statusCode).send(error);
